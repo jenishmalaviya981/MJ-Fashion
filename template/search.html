@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %} Searching {% endblock title %}
+
+{% block body %}
+<div class="container my-5">
+
+    <h2 class="text-center mb-4">
+        Search Results for "{{ query }}"
+    </h2>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+
+        {% for product in results %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+
+                <img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+
+                    <p class="card-text">
+                        {{ product.description }}
+                    </p>
+
+                    <h4 class="text-success">
+                        ₹{{ product.price }}
+                    </h4>
+                </div>
+
+                <button class="btn btn-primary w-100 add-cart"
+        data-name="{{ product.name }}"
+        data-price="{{ product.price }}">
+    Add to Cart
+</button>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <h4>No products found.</h4>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+<script>
+document.querySelectorAll('.add-cart').forEach(button => {
+
+    button.onclick = function() {
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        cart.push({
+            name: this.dataset.name,
+            price: this.dataset.price
+        });
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        let count = document.getElementById('cart-count');
+        if(count){
+            count.innerText = cart.length;
+        }
+
+        alert(this.dataset.name + " Added to Cart!");
+    };
+
+});
+</script>
+{%endblock body%}

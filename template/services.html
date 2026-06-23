@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %} Services Us {% endblock title %}
+
+{% block body %}
+
+<div class="container px-4 py-5">
+    <h1 class="pb-2 border-bottom text-center">Our Services</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+
+        <div class="col d-flex flex-column align-items-start gap-2">
+            <h2 class="fw-bold text-body-emphasis">
+                Professional Web Solutions for Your Business
+            </h2>
+
+            <p class="text-body-secondary">
+                We provide modern web development, responsive design, and
+                customized digital solutions to help businesses grow online.
+                Our goal is to create fast, secure, and user-friendly websites.
+            </p>
+
+            <a href="contact.html" class="btn btn-primary btn-lg">
+                Get Started
+            </a>
+        </div>
+
+        <div class="col">
+            <div class="row row-cols-1 row-cols-sm-2 g-4">
+
+                <div class="col d-flex flex-column gap-2">
+                    <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3 p-2">
+                        💻
+                    </div>
+                    <h4 class="fw-semibold mb-0 text-body-emphasis">
+                        Web Development
+                    </h4>
+                    <p class="text-body-secondary">
+                        Custom websites built with modern technologies and best practices.
+                    </p>
+                </div>
+
+                <div class="col d-flex flex-column gap-2">
+                    <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3 p-2">
+                        📱
+                    </div>
+                    <h4 class="fw-semibold mb-0 text-body-emphasis">
+                        Responsive Design
+                    </h4>
+                    <p class="text-body-secondary">
+                        Mobile-friendly layouts that work perfectly on all devices.
+                    </p>
+                </div>
+
+                <div class="col d-flex flex-column gap-2">
+                    <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3 p-2">
+                        ⚡
+                    </div>
+                    <h4 class="fw-semibold mb-0 text-body-emphasis">
+                        Fast Performance
+                    </h4>
+                    <p class="text-body-secondary">
+                        Optimized websites with quick loading speeds and smooth experience.
+                    </p>
+                </div>
+
+                <div class="col d-flex flex-column gap-2">
+                    <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3 p-2">
+                        🔒
+                    </div>
+                    <h4 class="fw-semibold mb-0 text-body-emphasis">
+                        Secure Solutions
+                    </h4>
+                    <p class="text-body-secondary">
+                        Security-focused development to protect your data and users.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock body %}

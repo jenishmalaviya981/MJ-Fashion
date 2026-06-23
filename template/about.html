@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %} About Us {% endblock title %}
+
+{% block body %}
+
+<div class="container text-center my-3">
+        <h1 class="display-4 fw-bold">About Us</h1>
+        <p class="lead">
+            Creating modern websites and digital experiences that help businesses grow.
+        </p>
+    </div>
+</section>
+
+<!-- About Content -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            <div class="col-md-6">
+                <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800"
+                     class="img-fluid rounded shadow"
+                     alt="About Us">
+            </div>
+
+            <div class="col-md-6">
+                <h2 class="fw-bold mb-3">Who We Are</h2>
+
+                <p class="text-muted">
+                    We are a passionate team of web developers and designers dedicated
+                    to building high-quality websites and web applications. Our mission
+                    is to help businesses establish a strong online presence through
+                    modern technology and creative solutions.
+                </p>
+
+                <p class="text-muted">
+                    Whether you need a business website, portfolio, e-commerce store,
+                    or custom web application, we deliver solutions that are fast,
+                    responsive, and user-friendly.
+                </p>
+
+                <a href="/contact" class="btn btn-primary">
+                    Contact Us
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Statistics -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center">
+
+            <div class="col-md-4">
+                <h2 class="fw-bold text-primary">100+</h2>
+                <p>Projects Completed</p>
+            </div>
+
+            <div class="col-md-4">
+                <h2 class="fw-bold text-primary">50+</h2>
+                <p>Happy Clients</p>
+            </div>
+
+            <div class="col-md-4">
+                <h2 class="fw-bold text-primary">3+</h2>
+                <p>Years Experience</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Our Team</h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg"
+                             class="rounded-circle mb-3"
+                             width="120"
+                             alt="Team Member">
+                        <h5>John Doe</h5>
+                        <p class="text-muted">Web Developer</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <img src="https://randomuser.me/api/portraits/women/2.jpg"
+                             class="rounded-circle mb-3"
+                             width="120"
+                             alt="Team Member">
+                        <h5>Sarah Smith</h5>
+                        <p class="text-muted">UI/UX Designer</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <img src="https://randomuser.me/api/portraits/men/3.jpg"
+                             class="rounded-circle mb-3"
+                             width="120"
+                             alt="Team Member">
+                        <h5>Mike Johnson</h5>
+                        <p class="text-muted">Project Manager</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+    <p class="mb-0">
+        © 2026 Your Company Name. All Rights Reserved.
+    </p>
+</footer>
+
+{% endblock body %}

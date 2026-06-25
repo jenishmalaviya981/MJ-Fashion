@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:flex-end;
+            align-items:center;
+            padding-right:120px;
+
+            background:url("{% static 'login-bg.jpg' %}") no-repeat center center;
+            background-size:cover;
+            position:relative;
+        }
+
+        body::before{
+            content:"";
+            position:absolute;
+            inset:0;
+            background:rgba(0,0,0,0.35);
+        }
+
+        .register-card{
+            position:relative;
+            z-index:1;
+
+            width:100%;
+            max-width:420px;
+
+            border-radius:20px;
+            border:1px solid rgba(255,255,255,0.2);
+
+            background:rgba(255,255,255,0.12);
+            backdrop-filter:blur(12px);
+            -webkit-backdrop-filter:blur(12px);
+
+            box-shadow:0 8px 32px rgba(0,0,0,0.3);
+
+            padding:40px;
+        }
+
+        h2{
+            color:white;
+            text-align:center;
+            margin-bottom:30px;
+            font-weight:700;
+        }
+
+        .form-label{
+            color:white;
+        }
+
+        .form-control{
+            background:rgba(255,255,255,0.15);
+            border:1px solid rgba(255,255,255,0.25);
+            color:white;
+            border-radius:10px;
+        }
+
+        .form-control::placeholder{
+            color:#ddd;
+        }
+
+        .form-control:focus{
+            background:rgba(255,255,255,0.2);
+            color:white;
+            border-color:white;
+            box-shadow:none;
+        }
+
+        .btn-register{
+            width:100%;
+            padding:12px;
+            border-radius:10px;
+            font-weight:600;
+        }
+
+        .footer-text{
+            text-align:center;
+            margin-top:20px;
+            color:white;
+        }
+
+        .footer-text a{
+            color:white;
+            text-decoration:none;
+            font-weight:600;
+        }
+
+        .footer-text a:hover{
+            color:#ddd;
+        }
+
+        .logo{
+            font-size:55px;
+            text-align:center;
+            margin-bottom:10px;
+        }
+
+        @media(max-width:768px){
+            body{
+                justify-content:center;
+                padding-right:0;
+            }
+
+            .register-card{
+                width:90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="register-card">
+
+    <div class="logo">📝</div>
+
+    <h2>Register</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text"
+                   class="form-control"
+                   name="username"
+                   placeholder="Enter Username"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password"
+                   class="form-control"
+                   name="password"
+                   placeholder="Enter Password"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Confirm Password</label>
+            <input type="password"
+                   class="form-control"
+                   name="confirm_password"
+                   placeholder="Confirm Password"
+                   required>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-register">
+            Register
+        </button>
+    </form>
+
+    <div class="footer-text">
+        Already have an account?
+        <a href="/login">Login</a>
+    </div>
+
+</div>
+
+</body>
+</html>

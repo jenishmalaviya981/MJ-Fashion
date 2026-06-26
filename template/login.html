@@ -144,14 +144,6 @@
         <div class="logo">🔐</div>
 
         <h2>Login</h2>
-{% if error %}
-<div class="alert alert-danger alert-dismissible fade show">
-    {{ error }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-</div>
-{% endif %}
-
-<form method="POST">
 
         <form method="POST">
             {% csrf_token %}

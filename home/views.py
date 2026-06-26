@@ -89,7 +89,7 @@ def loginuser(request):
             return redirect('/')
         else:
             # No backend authenticated the credentials
-            return render(request,'login.html')
+            messages.error(request, "Invalid Username or Password!")
 
         
     

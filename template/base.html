@@ -1,105 +1,377 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <title> {%block title%} {% endblock title %}| MJ Fashion </title>
-  </head>
-  <body>
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!-- Bootstrap 5 & Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Font (Inter) for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Custom premium styling -->
+  <style>
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: #f8fafc;
+    }
+    /* Premium navbar with glass-morphism */
+    .premium-nav {
+      background: rgba(15, 23, 42, 0.92) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 0.6rem 0;
+    }
+    .premium-nav .navbar-brand {
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, #f0e9e9 0%, #c0b7b7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .premium-nav .nav-link {
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      transition: all 0.25s ease;
+      color: rgba(255,255,255,0.75) !important;
+      letter-spacing: 0.3px;
+      position: relative;
+    }
+    .premium-nav .nav-link:hover,
+    .premium-nav .nav-link.active {
+      color: #ffffff !important;
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-1px);
+    }
+    .premium-nav .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 1.2rem;
+      right: 1.2rem;
+      height: 2px;
+      background: linear-gradient(90deg, #a78bfa, #818cf8);
+      border-radius: 4px;
+    }
+    /* Search bar premium */
+    .search-wrapper {
+      position: relative;
+    }
+    .search-wrapper .form-control {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 40px;
+      padding: 0.55rem 1.2rem 0.55rem 2.8rem;
+      color: #f1f5f9;
+      font-weight: 400;
+      transition: all 0.25s;
+      width: 220px;
+      backdrop-filter: blur(4px);
+    }
+    .search-wrapper .form-control:focus {
+      background: rgba(255,255,255,0.12);
+      border-color: #a78bfa;
+      box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.15);
+      color: #fff;
+      width: 260px;
+    }
+    .search-wrapper .form-control::placeholder {
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
+      font-size: 0.9rem;
+    }
+    .search-wrapper .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.3);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+    .search-wrapper .btn-search {
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      bottom: 4px;
+      border-radius: 40px;
+      padding: 0 1.2rem;
+      background: linear-gradient(135deg, #818cf8, #a78bfa);
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(129, 140, 248, 0.3);
+    }
+    .search-wrapper .btn-search:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 16px rgba(129, 140, 248, 0.5);
+    }
+    /* Cart & action buttons */
+    .action-btn {
+      border-radius: 40px;
+      padding: 0.5rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: none;
+    }
+    .btn-cart {
+      background: rgba(255,255,255,0.07);
+      color: #f1f5f9;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .btn-cart:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .btn-cart .badge-cart {
+      background: linear-gradient(135deg, #a78bfa, #7c3aed);
+      color: #fff;
+      border-radius: 30px;
+      padding: 0.25rem 0.7rem;
+      font-weight: 700;
+      font-size: 0.75rem;
+      margin-left: 4px;
+    }
+    .btn-logout {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      padding: 0.5rem 1.1rem;
+    }
+    .btn-logout:hover {
+      background: rgba(239, 68, 68, 0.25);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.15);
+    }
+    /* Alert premium */
+    .premium-alert {
+      border-radius: 0 0 16px 16px;
+      border: none;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      padding: 0.9rem 1.8rem;
+      font-weight: 500;
+      border-left: 6px solid #818cf8;
+    }
+    .premium-alert strong {
+      color: #0f172a;
+    }
+    /* Main content padding */
+    .main-content {
+      padding: 2.5rem 0 4rem;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .search-wrapper .form-control {
+        width: 160px;
+      }
+      .search-wrapper .form-control:focus {
+        width: 200px;
+      }
+    }
+    @media (max-width: 768px) {
+      .premium-nav .navbar-brand {
+        font-size: 1.4rem;
+      }
+      .search-wrapper .form-control {
+        width: 100%;
+      }
+      .search-wrapper .form-control:focus {
+        width: 100%;
+      }
+    }
+  </style>
+  <title> {% block title %}{% endblock title %} | MJ Fashion </title>
+</head>
+<body>
+
+  <!-- ========== PREMIUM NAVBAR ========== -->
+  <nav class="navbar navbar-expand-lg premium-nav sticky-top">
     <div class="container">
+      <a class="navbar-brand fw-bold" href="/">
+        <i class="bi bi-diamond-fill me-1" style="font-size: 1.2rem; background: linear-gradient(135deg,#a78bfa,#818cf8); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+        MJ Fashion
+      </a>
 
-        <a class="navbar-brand fw-bold" href="/">MJ Fashion</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
 
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Left Menu -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-1">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">ABOUT US</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/services">SERVICES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">CONTACT US</a>
+          </li>
+        </ul>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Search - premium wrapper -->
+        <div class="d-flex align-items-center gap-3 w-100 w-lg-auto">
+          <form class="search-wrapper d-flex w-100" action="/search/" method="GET">
+            <i class="bi bi-search search-icon"></i>
+            <input class="form-control" type="search" name="q" placeholder="Search Products" aria-label="Search">
+            <button class="btn-search" type="submit">Search</button>
+          </form>
 
-            <!-- Left Menu -->
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/">HOME</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link text-white"  href="/about">ABOUT US</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/services">SERVICES</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/contact">CONTACT US</a>
-                </li>
-            </ul>
-
-            <!-- Search -->
-            <<form class="d-flex me-3" action="/search/" method="GET">
-               <input class="form-control me-2"
-                  type="search"
-                  name="q"
-                  placeholder="Search Products">
-                <button class="btn btn-outline-light" type="submit">
-                 Search
-                </button>
-            </form>
-
-            <!-- Cart -->
-            <<a href="/cart/" class="btn btn-primary">
-    🛒 Cart
-    <span id="cart-count" class="badge bg-light text-dark"></span>
-     </a>
-     <a href="/logout" class="btn btn-danger">
-    <i class="bi bi-box-arrow-right me-0"></i>
-    Logout
-</a>
-
+          <!-- Cart & Logout group -->
+          <div class="d-flex align-items-center gap-2 ms-2">
+            <a href="/cart/" class="action-btn btn-cart">
+              <i class="bi bi-bag-fill" style="font-size: 1.1rem;"></i>
+              Cart
+              <span id="cart-count" class="badge-cart">0</span>
+            </a>
+            <a href="/logout" class="action-btn btn-logout">
+              <i class="bi bi-box-arrow-right"></i>
+              Logout
+            </a>
+          </div>
         </div>
+      </div>
     </div>
-</nav>
-{% if messages %}
-{% for message in messages %}
-<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
-  <strong>{{ message }}</strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-{% endfor %}
-{% endif %}
-{% block body %} {% endblock body  %}
+  </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<script>
-document.querySelectorAll('.add-cart').forEach(button => {
+  <!-- ========== MESSAGES (premium) ========== -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="container mt-2">
+        <div class="alert premium-alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+          <i class="bi bi-check-circle-fill me-2" style="color: #818cf8;"></i>
+          <strong>{{ message }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
 
-    button.onclick = function() {
+  <!-- ========== MAIN BLOCK ========== -->
+  <main class="main-content">
+    <div class="container">
+      {% block body %}
+        <!-- Default content (can be overridden) -->
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <div class="p-5 bg-white rounded-4 shadow-sm">
+              <h2 class="fw-light text-secondary">Welcome to <span class="fw-bold" style="color: #4f46e5;">MJ Fashion</span></h2>
+              <p class="lead text-muted">Premium style, timeless elegance.</p>
+              <hr class="w-25 mx-auto">
+              <p class="text-secondary">Browse our collection and experience luxury.</p>
+            </div>
+          </div>
+        </div>
+      {% endblock body %}
+    </div>
+  </main>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+  </script>
+
+  <!-- ========== ENHANCED CART SCRIPT (premium) ========== -->
+  <script>
+    (function() {
+      // Helper to update cart badge across all pages
+      function updateCartBadge() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let count = cart.length;
+        let badges = document.querySelectorAll('#cart-count');
+        badges.forEach(badge => {
+          badge.innerText = count;
+        });
+        return cart;
+      }
+
+      // Initial update
+      let cart = updateCartBadge();
+
+      // Attach event listeners to all .add-cart buttons (including future ones)
+      document.addEventListener('click', function(e) {
+        const button = e.target.closest('.add-cart');
+        if (!button) return;
+
+        e.preventDefault();
+
+        // Collect data
+        const name = button.dataset.name || 'Item';
+        const price = button.dataset.price || '0';
+
+        // Get current cart
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+        // Push item (for demo we just store name & price)
         cart.push({
-            name: this.dataset.name,
-            price: this.dataset.price
+          name: name,
+          price: price,
+          addedAt: new Date().toISOString()
         });
 
         localStorage.setItem('cart', JSON.stringify(cart));
 
-        let count = document.getElementById('cart-count');
-        if(count){
-            count.innerText = cart.length;
-        }
+        // Update badge
+        updateCartBadge();
 
-        alert(this.dataset.name + " Added to Cart!");
-    };
+        // Premium feedback
+        const toast = document.createElement('div');
+        toast.className = 'position-fixed bottom-0 end-0 p-3';
+        toast.style.zIndex = '9999';
+        toast.innerHTML = `
+          <div class="toast show align-items-center text-white bg-dark border-0 rounded-4 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true" style="background: rgba(15,23,42,0.9) !important; backdrop-filter: blur(8px);">
+            <div class="d-flex">
+              <div class="toast-body d-flex align-items-center gap-3">
+                <span class="badge bg-primary bg-gradient rounded-circle p-2"><i class="bi bi-check-lg"></i></span>
+                <div>
+                  <strong class="text-white">${name}</strong>
+                  <span class="text-light-emphasis ms-2">added to cart</span>
+                </div>
+              </div>
+              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+          toast.remove();
+        }, 2800);
+      });
 
-});
-</script>
-  </body>
+      // Also re-run on any dynamic content change (optional)
+      // Expose update function if needed
+      window.updateCartBadge = updateCartBadge;
+
+    })();
+  </script>
+
+  <!-- extra block for custom per-page scripts -->
+  {% block extra_scripts %}{% endblock extra_scripts %}
+</body>
 </html>

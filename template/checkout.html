@@ -1,192 +1,554 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %} Checkout {% endblock title %}
 
 {% block body %}
-
-<div class="container py-5">
-
-    <div class="text-center mb-5">
-        <h2>Checkout</h2>
-        <p class="lead">Complete your billing information and place your order.</p>
-    </div>
-
-    <div class="row g-5">
-
-        <!-- Cart Summary -->
-        <div class="col-md-5 col-lg-4 order-md-last">
-
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-primary">Your Cart</span>
-                <span class="badge bg-primary rounded-pill" id="cart-count"></span>
-            </h4>
-
-            <ul class="list-group mb-3" id="checkout-items">
-            </ul>
-
+<!-- ====== CHECKOUT HERO ====== -->
+<div class="bg-gradient-checkout py-4 mb-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-5 fw-bold text-white mb-2">
+                    <i class="bi bi-credit-card-2-front me-2"></i>Checkout
+                </h1>
+                <p class="text-white-50 mb-0">Complete your billing information and place your order</p>
+            </div>
         </div>
-
-        <!-- Billing Form -->
-        <div class="col-md-7 col-lg-8">
-
-            <form id="checkout-form">
-
-                <h4 class="mb-3">Billing Address</h4>
-
-                <div class="row g-3">
-
-                    <div class="col-sm-6">
-                        <label class="form-label">First Name</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <label class="form-label">Last Name</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label">Username</label>
-                        <div class="input-group">
-                            <span class="input-group-text">@</span>
-                            <input type="text" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" placeholder="you@example.com" required>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label">Address</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label class="form-label">Country</label>
-                        <select class="form-select" required>
-                            <option value="">Choose...</option>
-                            <option>India</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="form-label">State</label>
-                        <select class="form-select" required>
-                            <option value="">Choose...</option>
-                            <option>Gujarat</option>
-                            <option>Goa</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-3">
-                        <label class="form-label">PIN Code</label>
-                        <input type="number" class="form-control" required>
-                    </div>
-
-                </div>
-
-                <hr class="my-4">
-
-                <h4 class="mb-3">Payment Method</h4>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="payment" checked>
-                    <label class="form-check-label">Credit Card</label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="payment">
-                    <label class="form-check-label">Debit Card</label>
-                </div>
-
-                <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="payment">
-                    <label class="form-check-label">UPI</label>
-                </div>
-
-                <div class="row gy-3">
-
-                    <div class="col-md-6">
-                        <label class="form-label">Name on Card</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">Card Number</label>
-                        <input type="number" class="form-control" required>
-                    </div>
-
-                    <div class="col-md-3">
-                        <label class="form-label">Expiry</label>
-                        <input type="month" class="form-control" placeholder="MM/YY" required>
-                    </div>
-
-                    <div class="col-md-3">
-                        <label class="form-label">CVV</label>
-                        <input type="password" class="form-control" required>
-                    </div>
-
-                </div>
-
-                <hr class="my-4">
-
-                <button class="w-100 btn btn-success btn-lg" type="submit">
-                    Place Order
-                </button>
-
-            </form>
-
-        </div>
-
     </div>
-
 </div>
 
-<script>
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+<div class="container pb-5">
+    <div class="row g-5">
 
-let total = 0;
-let html = '';
-
-cart.forEach(item => {
-
-    total += Number(item.price);
-
-    html += `
-    <li class="list-group-item d-flex justify-content-between">
-        <span>${item.name}</span>
-        <strong>₹${item.price}</strong>
-    </li>`;
-});
-
-html += `
-<li class="list-group-item d-flex justify-content-between">
-    <span>Total</span>
-    <strong>₹${total}</strong>
-</li>`;
-
-document.getElementById('checkout-items').innerHTML = html;
-document.getElementById('cart-count').innerText = cart.length;
-
-document.getElementById('checkout-form').addEventListener('submit', function(e){
-
-    e.preventDefault();
-
-    localStorage.removeItem('cart');
-
-    document.body.innerHTML = `
-    <div class="container text-center py-5">
-        <div class="card shadow p-5">
-            <h1 class="display-1 text-success">✓</h1>
-            <h2>Order Placed Successfully!</h2>
-            <p>Thank you for shopping with MJ Fashion.</p>
-            <a href="/" class="btn btn-primary mt-3">
-                Continue Shopping
-            </a>
+        <!-- ====== ORDER SUMMARY ====== -->
+        <div class="col-lg-4 order-lg-last">
+            <div class="card border-0 shadow-lg rounded-4 sticky-lg-top" style="top: 100px;">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <h5 class="fw-bold mb-0">
+                        <i class="bi bi-bag-check text-primary me-2"></i>Order Summary
+                        <span class="badge bg-primary rounded-pill ms-2" id="cart-count">0</span>
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="list-group list-group-flush" id="checkout-items">
+                        <!-- Items will be rendered here -->
+                    </div>
+                    
+                    <hr class="my-3">
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="fw-bold">Total Amount</span>
+                        <h4 class="fw-bold text-primary mb-0">
+                            ₹<span id="total-amount">0</span>
+                        </h4>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <small class="text-muted d-block">
+                            <i class="bi bi-shield-check text-success me-1"></i>
+                            Secure checkout protected by encryption
+                        </small>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>`;
+
+        <!-- ====== BILLING FORM ====== -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="card-body p-4 p-md-5">
+                    
+                    <form id="checkout-form">
+                        <h4 class="fw-bold mb-4">
+                            <i class="bi bi-person-badge text-primary me-2"></i>Billing Address
+                        </h4>
+
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label class="form-label fw-semibold">First Name</label>
+                                <input type="text" class="form-control form-control-lg rounded-3" 
+                                       name="first_name" placeholder="First name" required>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="form-label fw-semibold">Last Name</label>
+                                <input type="text" class="form-control form-control-lg rounded-3" 
+                                       name="last_name" placeholder="Last name" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Username</label>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-text bg-light border-0 rounded-start-3">@</span>
+                                    <input type="text" class="form-control rounded-end-3" 
+                                           name="username" placeholder="username" required>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    <i class="bi bi-envelope me-1"></i>Email Address
+                                </label>
+                                <input type="email" class="form-control form-control-lg rounded-3" 
+                                       name="email" placeholder="you@example.com" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    <i class="bi bi-geo-alt me-1"></i>Address
+                                </label>
+                                <input type="text" class="form-control form-control-lg rounded-3" 
+                                       name="address" placeholder="123 Main Street" required>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label class="form-label fw-semibold">Country</label>
+                                <select class="form-select form-select-lg rounded-3" name="country" required>
+                                    <option value="">Choose...</option>
+                                    <option value="India">India</option>
+                                    <option value="USA">USA</option>
+                                    <option value="UK">UK</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Australia">Australia</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">State</label>
+                                <select class="form-select form-select-lg rounded-3" name="state" required>
+                                    <option value="">Choose...</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Goa">Goa</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">PIN Code</label>
+                                <input type="number" class="form-control form-control-lg rounded-3" 
+                                       name="pincode" placeholder="395001" required>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <!-- ====== PAYMENT METHOD ====== -->
+                        <h4 class="fw-bold mb-4">
+                            <i class="bi bi-credit-card text-primary me-2"></i>Payment Method
+                        </h4>
+
+                        <div class="payment-options mb-4">
+                            <div class="form-check payment-option p-3 rounded-3 mb-2">
+                                <input class="form-check-input" type="radio" name="payment" value="credit_card" checked id="credit_card">
+                                <label class="form-check-label w-100" for="credit_card">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <i class="bi bi-credit-card-fill text-primary me-2"></i>
+                                            <span class="fw-semibold">Credit Card</span>
+                                        </div>
+                                        <div class="payment-icons">
+                                            <i class="bi bi-circle-fill text-danger small"></i>
+                                            <i class="bi bi-circle-fill text-primary small"></i>
+                                            <i class="bi bi-circle-fill text-success small"></i>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="form-check payment-option p-3 rounded-3 mb-2">
+                                <input class="form-check-input" type="radio" name="payment" value="debit_card" id="debit_card">
+                                <label class="form-check-label w-100" for="debit_card">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <i class="bi bi-bank text-primary me-2"></i>
+                                            <span class="fw-semibold">Debit Card</span>
+                                        </div>
+                                        <div class="payment-icons">
+                                            <i class="bi bi-circle-fill text-danger small"></i>
+                                            <i class="bi bi-circle-fill text-primary small"></i>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="form-check payment-option p-3 rounded-3 mb-2">
+                                <input class="form-check-input" type="radio" name="payment" value="upi" id="upi">
+                                <label class="form-check-label w-100" for="upi">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <i class="bi bi-phone text-primary me-2"></i>
+                                            <span class="fw-semibold">UPI (Google Pay, PhonePe, Paytm)</span>
+                                        </div>
+                                        <div>
+                                            <span class="badge bg-success">Fast</span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="form-check payment-option p-3 rounded-3">
+                                <input class="form-check-input" type="radio" name="payment" value="cod" id="cod">
+                                <label class="form-check-label w-100" for="cod">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <i class="bi bi-cash text-primary me-2"></i>
+                                            <span class="fw-semibold">Cash on Delivery</span>
+                                        </div>
+                                        <div>
+                                            <span class="badge bg-warning text-dark">No extra charge</span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- ====== CARD DETAILS ====== -->
+                        <div id="card-details" class="mt-4">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Name on Card</label>
+                                    <input type="text" class="form-control form-control-lg rounded-3" 
+                                           name="card_name" placeholder="John Doe">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Card Number</label>
+                                    <input type="text" class="form-control form-control-lg rounded-3" 
+                                           name="card_number" placeholder="1234 5678 9012 3456" maxlength="19">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Expiry Date</label>
+                                    <input type="month" class="form-control form-control-lg rounded-3" 
+                                           name="expiry" placeholder="MM/YY">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">CVV</label>
+                                    <input type="password" class="form-control form-control-lg rounded-3" 
+                                           name="cvv" placeholder="•••" maxlength="4">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ====== TERMS ====== -->
+                        <div class="form-check mt-4">
+                            <input class="form-check-input" type="checkbox" id="terms" required>
+                            <label class="form-check-label" for="terms">
+                                I agree to the <a href="#" class="text-primary">Terms and Conditions</a> and 
+                                <a href="#" class="text-primary">Privacy Policy</a>
+                            </label>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <button class="w-100 btn btn-success btn-lg py-3 rounded-pill fw-semibold" type="submit">
+                            <i class="bi bi-check-circle me-2"></i>Place Order
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ====== CUSTOM SCRIPTS ====== -->
+<script>
+// Get cart from localStorage
+function getCart() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+}
+
+// Update cart badge
+function updateCartBadge() {
+    let cart = getCart();
+    let count = cart.length;
+    let badges = document.querySelectorAll('#cart-count');
+    badges.forEach(badge => {
+        badge.innerText = count;
+    });
+}
+
+// Load order summary
+function loadOrderSummary() {
+    let cart = getCart();
+    let container = document.getElementById('checkout-items');
+    let totalSpan = document.getElementById('total-amount');
+    let cartCount = document.getElementById('cart-count');
+    
+    if (cart.length === 0) {
+        container.innerHTML = `
+            <div class="text-center py-4">
+                <i class="bi bi-cart-x fs-1 text-muted"></i>
+                <p class="text-muted mt-2">Your cart is empty</p>
+                <a href="/" class="btn btn-primary btn-sm">Continue Shopping</a>
+            </div>
+        `;
+        totalSpan.innerText = '0';
+        cartCount.innerText = '0';
+        return;
+    }
+    
+    // Group items
+    let itemGroups = {};
+    cart.forEach(item => {
+        let key = item.name + '|' + item.price;
+        if (itemGroups[key]) {
+            itemGroups[key].quantity++;
+        } else {
+            itemGroups[key] = {
+                name: item.name,
+                price: Number(item.price),
+                quantity: 1
+            };
+        }
+    });
+    
+    let groupedItems = Object.values(itemGroups);
+    let total = 0;
+    let html = '';
+    
+    groupedItems.forEach(item => {
+        let itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        html += `
+            <div class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">
+                <div>
+                    <span class="fw-semibold">${item.name}</span>
+                    <span class="badge bg-secondary ms-2">${item.quantity}x</span>
+                </div>
+                <span class="fw-bold">₹${itemTotal.toFixed(2)}</span>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+    totalSpan.innerText = total.toFixed(2);
+    cartCount.innerText = cart.length;
+}
+
+// Toggle card details visibility based on payment method
+document.querySelectorAll('input[name="payment"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        let cardDetails = document.getElementById('card-details');
+        if (this.value === 'cod') {
+            cardDetails.style.display = 'none';
+        } else {
+            cardDetails.style.display = 'block';
+        }
+    });
 });
+
+// Format card number with spaces
+document.querySelector('input[name="card_number"]')?.addEventListener('input', function(e) {
+    let value = this.value.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim();
+    this.value = value;
+});
+
+// Handle form submission
+document.getElementById('checkout-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    let cart = getCart();
+    if (cart.length === 0) {
+        alert('Your cart is empty! Please add items before checking out.');
+        return;
+    }
+    
+    // Get form data
+    let formData = new FormData(this);
+    let orderData = {
+        first_name: formData.get('first_name'),
+        last_name: formData.get('last_name'),
+        username: formData.get('username'),
+        email: formData.get('email'),
+        address: formData.get('address'),
+        country: formData.get('country'),
+        state: formData.get('state'),
+        pincode: formData.get('pincode'),
+        payment: formData.get('payment'),
+        items: cart,
+        total: cart.reduce((sum, item) => sum + Number(item.price), 0)
+    };
+    
+    // Save order to localStorage (for demo)
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders.push({
+        ...orderData,
+        order_id: 'ORD-' + Date.now(),
+        order_date: new Date().toISOString()
+    });
+    localStorage.setItem('orders', JSON.stringify(orders));
+    
+    // Clear cart
+    localStorage.removeItem('cart');
+    updateCartBadge();
+    
+    // Show success page
+    document.body.innerHTML = `
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-lg rounded-4 p-5 text-center">
+                        <div class="success-icon mx-auto mb-4">
+                            <i class="bi bi-check-circle-fill text-success display-1"></i>
+                        </div>
+                        <h1 class="display-6 fw-bold mb-3">🎉 Order Placed Successfully!</h1>
+                        <p class="text-muted fs-5 mb-4">
+                            Thank you for shopping with <strong>MJ Fashion</strong>.
+                            We'll send you a confirmation email shortly.
+                        </p>
+                        <div class="d-flex flex-wrap gap-3 justify-content-center">
+                            <a href="/" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-semibold">
+                                <i class="bi bi-arrow-left me-2"></i>Continue Shopping
+                            </a>
+                            <a href="#" class="btn btn-outline-secondary btn-lg px-5 py-3 rounded-pill fw-semibold">
+                                <i class="bi bi-receipt me-2"></i>View Order
+                            </a>
+                        </div>
+                        <hr class="my-4">
+                        <small class="text-muted">
+                            <i class="bi bi-envelope me-1"></i>
+                            Confirmation email sent to <strong>${orderData.email}</strong>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .success-icon {
+                width: 120px;
+                height: 120px;
+                background: linear-gradient(135deg, rgba(5, 150, 105, 0.08), rgba(16, 185, 129, 0.08));
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .success-icon i {
+                font-size: 4rem;
+            }
+        </style>
+    `;
+});
+
+// Load order summary on page load
+loadOrderSummary();
+updateCartBadge();
 </script>
-{%endblock body%}
+
+<!-- ====== EXTRA STYLES ====== -->
+<style>
+    .bg-gradient-checkout {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 70%, #533483 100%);
+    }
+    
+    .payment-option {
+        background: #f8fafc;
+        border: 2px solid #e5e7eb;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .payment-option:hover {
+        background: #f1f5f9;
+        border-color: #c4b5fd;
+    }
+    
+    .payment-option:has(input:checked) {
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(124, 58, 237, 0.05));
+        border-color: #7c3aed;
+        box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+    
+    .payment-option input[type="radio"] {
+        margin-top: 0.15rem;
+    }
+    
+    .payment-icons i {
+        margin: 0 2px;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #4338ca, #6d28d9);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+    }
+    
+    .btn-success {
+        background: linear-gradient(135deg, #059669, #10b981);
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-success:hover {
+        background: linear-gradient(135deg, #047857, #059669);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
+    }
+    
+    .form-control-lg {
+        padding: 0.75rem 1rem;
+        border: 2px solid #e5e7eb;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+    
+    .form-control-lg:focus {
+        border-color: #7c3aed;
+        box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+    }
+    
+    .form-select-lg {
+        padding: 0.75rem 1rem;
+        border: 2px solid #e5e7eb;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+    
+    .form-select-lg:focus {
+        border-color: #7c3aed;
+        box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+    }
+    
+    .sticky-lg-top {
+        z-index: 10;
+    }
+    
+    .list-group-item {
+        background: transparent;
+        border-color: #f1f5f9;
+    }
+    
+    @media (max-width: 768px) {
+        .bg-gradient-checkout {
+            padding: 2rem 0 !important;
+        }
+        .display-5 {
+            font-size: 1.8rem;
+        }
+        .btn-lg {
+            font-size: 0.95rem;
+            padding: 0.6rem 1.2rem !important;
+        }
+        .card-body {
+            padding: 1.5rem !important;
+        }
+        .payment-option {
+            padding: 1rem !important;
+        }
+    }
+</style>
+{% endblock body %}

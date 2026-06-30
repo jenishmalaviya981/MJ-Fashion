@@ -1,46 +1,92 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %} About Us {% endblock title %}
 
 {% block body %}
-
-<div class="container text-center my-3">
-        <h1 class="display-4 fw-bold">About Us</h1>
-        <p class="lead">
-            Creating modern websites and digital experiences that help businesses grow.
-        </p>
+<!-- ====== ABOUT HERO ====== -->
+<div class="bg-gradient-about py-5 mb-4 position-relative overflow-hidden">
+    <div class="container position-relative">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <span class="badge bg-white text-dark px-4 py-2 rounded-pill mb-3 fw-semibold">
+                    <i class="bi bi-heart-fill me-1 text-danger"></i> Our Story
+                </span>
+                <h1 class="display-4 fw-bold text-white mb-3">About MJ Fashion</h1>
+                <p class="lead text-white-50 mb-0">Creating premium fashion experiences that inspire confidence and style</p>
+            </div>
+        </div>
     </div>
-</section>
+    <!-- Decorative fashion elements -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 opacity-10">
+        <div class="position-absolute top-50 start-10 translate-middle-y">
+            <i class="bi bi-diamond text-white fs-1"></i>
+        </div>
+        <div class="position-absolute top-25 end-10">
+            <i class="bi bi-tags text-white fs-1"></i>
+        </div>
+        <div class="position-absolute bottom-25 start-25">
+            <i class="bi bi-gem text-white fs-1"></i>
+        </div>
+        <div class="position-absolute top-10 end-25">
+            <i class="bi bi-star text-white fs-1"></i>
+        </div>
+    </div>
+</div>
 
-<!-- About Content -->
+<!-- ====== ABOUT CONTENT ====== -->
 <section class="py-5">
     <div class="container">
         <div class="row align-items-center g-5">
 
-            <div class="col-md-6">
-                <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800"
-                     class="img-fluid rounded shadow"
-                     alt="About Us">
+            <div class="col-lg-6">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&h=600&fit=crop"
+                         class="img-fluid rounded-4 shadow-lg"
+                         alt="MJ Fashion Store">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-primary bg-opacity-10 rounded-4"></div>
+                    <div class="position-absolute bottom-0 end-0 bg-white p-3 rounded-3 shadow-sm m-3">
+                        <span class="fw-bold text-primary">Est. 2017</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-md-6">
-                <h2 class="fw-bold mb-3">Who We Are</h2>
+            <div class="col-lg-6">
+                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-3">
+                    <i class="bi bi-info-circle me-1"></i> About Us
+                </span>
+                <h2 class="fw-bold mb-4 display-6" style="color: #0f172a;">Who We Are</h2>
 
-                <p class="text-muted">
-                    We are a passionate team of web developers and designers dedicated
-                    to building high-quality websites and web applications. Our mission
-                    is to help businesses establish a strong online presence through
-                    modern technology and creative solutions.
+                <p class="text-secondary lead fs-6">
+                    At MJ Fashion, we believe fashion is more than just clothing—it's a form of self-expression. 
+                    We are a passionate team dedicated to bringing you the latest trends, timeless classics, and 
+                    premium quality fashion that makes you feel confident and stylish.
                 </p>
 
-                <p class="text-muted">
-                    Whether you need a business website, portfolio, e-commerce store,
-                    or custom web application, we deliver solutions that are fast,
-                    responsive, and user-friendly.
+                <p class="text-secondary">
+                    Our mission is to curate the best fashion collections from around the world, offering 
+                    everything from casual wear to formal attire, accessories, and more. We strive to provide 
+                    an exceptional shopping experience with personalized service, quality products, and 
+                    a commitment to sustainability.
                 </p>
 
-                <a href="/contact" class="btn btn-primary">
-                    Contact Us
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        <span class="small fw-medium">Premium Quality</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        <span class="small fw-medium">Trendy Styles</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        <span class="small fw-medium">Fast Delivery</span>
+                    </div>
+                </div>
+
+                <a href="/contact" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-semibold mt-4">
+                    <i class="bi bi-chat-dots me-2"></i>Get in Touch
                 </a>
             </div>
 
@@ -48,85 +94,301 @@
     </div>
 </section>
 
-<!-- Statistics -->
-<section class="bg-light py-5">
+<!-- ====== STATISTICS ====== -->
+<section class="py-5 bg-light">
     <div class="container">
-        <div class="row text-center">
+        <div class="text-center mb-5">
+            <span class="badge bg-dark bg-opacity-10 text-dark px-4 py-2 rounded-pill">
+                <i class="bi bi-graph-up-arrow me-1"></i> Our Impact
+            </span>
+            <h2 class="display-6 fw-bold mt-3" style="color: #0f172a;">MJ Fashion in Numbers</h2>
+            <div class="mx-auto" style="width: 60px; height: 3px; background: linear-gradient(90deg, #4f46e5, #7c3aed); border-radius: 4px;"></div>
+        </div>
 
-            <div class="col-md-4">
-                <h2 class="fw-bold text-primary">100+</h2>
-                <p>Projects Completed</p>
+        <div class="row g-4 text-center">
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-card p-4 rounded-4 bg-white shadow-sm transition-hover">
+                    <h2 class="fw-bold text-primary display-5 counter">500+</h2>
+                    <p class="text-secondary mb-0">Fashion Items</p>
+                </div>
             </div>
-
-            <div class="col-md-4">
-                <h2 class="fw-bold text-primary">50+</h2>
-                <p>Happy Clients</p>
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-card p-4 rounded-4 bg-white shadow-sm transition-hover">
+                    <h2 class="fw-bold text-primary display-5 counter">1000+</h2>
+                    <p class="text-secondary mb-0">Happy Customers</p>
+                </div>
             </div>
-
-            <div class="col-md-4">
-                <h2 class="fw-bold text-primary">3+</h2>
-                <p>Years Experience</p>
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-card p-4 rounded-4 bg-white shadow-sm transition-hover">
+                    <h2 class="fw-bold text-primary display-5 counter">4.9</h2>
+                    <p class="text-secondary mb-0">Average Rating</p>
+                </div>
             </div>
-
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-card p-4 rounded-4 bg-white shadow-sm transition-hover">
+                    <h2 class="fw-bold text-primary display-5 counter">5+</h2>
+                    <p class="text-secondary mb-0">Years Experience</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Team Section -->
+<!-- ====== OUR VALUES ====== -->
 <section class="py-5">
     <div class="container">
-        <h2 class="text-center fw-bold mb-5">Our Team</h2>
+        <div class="text-center mb-5">
+            <span class="badge bg-primary bg-opacity-10 text-primary px-4 py-2 rounded-pill">
+                <i class="bi bi-heart me-1"></i> Our Values
+            </span>
+            <h2 class="display-6 fw-bold mt-3" style="color: #0f172a;">What Drives Us</h2>
+            <div class="mx-auto" style="width: 60px; height: 3px; background: linear-gradient(90deg, #4f46e5, #7c3aed); border-radius: 4px;"></div>
+        </div>
 
         <div class="row g-4">
-
-            <div class="col-md-4">
-                <div class="card text-center shadow-sm">
-                    <div class="card-body">
-                        <img src="https://randomuser.me/api/portraits/men/1.jpg"
-                             class="rounded-circle mb-3"
-                             width="120"
-                             alt="Team Member">
-                        <h5>John Doe</h5>
-                        <p class="text-muted">Web Developer</p>
+            <div class="col-md-3 col-sm-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 transition-hover">
+                    <div class="value-icon mx-auto mb-3">
+                        <i class="bi bi-award fs-1 text-primary"></i>
                     </div>
+                    <h6 class="fw-bold">Quality First</h6>
+                    <p class="text-secondary small mb-0">We never compromise on quality</p>
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div class="card text-center shadow-sm">
-                    <div class="card-body">
-                        <img src="https://randomuser.me/api/portraits/women/2.jpg"
-                             class="rounded-circle mb-3"
-                             width="120"
-                             alt="Team Member">
-                        <h5>Sarah Smith</h5>
-                        <p class="text-muted">UI/UX Designer</p>
+            <div class="col-md-3 col-sm-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 transition-hover">
+                    <div class="value-icon mx-auto mb-3">
+                        <i class="bi bi-lightbulb fs-1 text-primary"></i>
                     </div>
+                    <h6 class="fw-bold">Innovation</h6>
+                    <p class="text-secondary small mb-0">Always staying ahead of trends</p>
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div class="card text-center shadow-sm">
-                    <div class="card-body">
-                        <img src="https://randomuser.me/api/portraits/men/3.jpg"
-                             class="rounded-circle mb-3"
-                             width="120"
-                             alt="Team Member">
-                        <h5>Mike Johnson</h5>
-                        <p class="text-muted">Project Manager</p>
+            <div class="col-md-3 col-sm-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 transition-hover">
+                    <div class="value-icon mx-auto mb-3">
+                        <i class="bi bi-people fs-1 text-primary"></i>
                     </div>
+                    <h6 class="fw-bold">Customer First</h6>
+                    <p class="text-secondary small mb-0">Your satisfaction is our priority</p>
                 </div>
             </div>
-
+            <div class="col-md-3 col-sm-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 transition-hover">
+                    <div class="value-icon mx-auto mb-3">
+                        <i class="bi bi-recycle fs-1 text-primary"></i>
+                    </div>
+                    <h6 class="fw-bold">Sustainability</h6>
+                    <p class="text-secondary small mb-0">Committed to ethical fashion</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Footer -->
-<footer class="bg-dark text-white text-center py-3">
-    <p class="mb-0">
-        © 2026 Your Company Name. All Rights Reserved.
-    </p>
-</footer>
+<!-- ====== TEAM SECTION ====== -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-dark bg-opacity-10 text-dark px-4 py-2 rounded-pill">
+                <i class="bi bi-people-fill me-1"></i> Meet the Team
+            </span>
+            <h2 class="display-6 fw-bold mt-3" style="color: #0f172a;">Our Fashion Experts</h2>
+            <div class="mx-auto" style="width: 60px; height: 3px; background: linear-gradient(90deg, #4f46e5, #7c3aed); border-radius: 4px;"></div>
+        </div>
 
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 text-center p-4 transition-hover">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg"
+                         class="rounded-circle mx-auto mb-3"
+                         style="width: 120px; height: 120px; object-fit: cover;"
+                         alt="Team Member">
+                    <h5 class="fw-bold mb-1">Priya Sharma</h5>
+                    <p class="text-muted small">Founder & Fashion Curator</p>
+                    <div class="social-links d-flex justify-content-center gap-2 mt-2">
+                        <a href="#" class="btn btn-sm btn-outline-primary rounded-circle"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-primary rounded-circle"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 text-center p-4 transition-hover">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                         class="rounded-circle mx-auto mb-3"
+                         style="width: 120px; height: 120px; object-fit: cover;"
+                         alt="Team Member">
+                    <h5 class="fw-bold mb-1">Rahul Verma</h5>
+                    <p class="text-muted small">Style Consultant</p>
+                    <div class="social-links d-flex justify-content-center gap-2 mt-2">
+                        <a href="#" class="btn btn-sm btn-outline-primary rounded-circle"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-primary rounded-circle"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 text-center p-4 transition-hover">
+                    <img src="https://randomuser.me/api/portraits/women/63.jpg"
+                         class="rounded-circle mx-auto mb-3"
+                         style="width: 120px; height: 120px; object-fit: cover;"
+                         alt="Team Member">
+                    <h5 class="fw-bold mb-1">Ananya Patel</h5>
+                    <p class="text-muted small">Fashion Designer</p>
+                    <div class="social-links d-flex justify-content-center gap-2 mt-2">
+                        <a href="#" class="btn btn-sm btn-outline-primary rounded-circle"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-primary rounded-circle"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 text-center p-4 transition-hover">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg"
+                         class="rounded-circle mx-auto mb-3"
+                         style="width: 120px; height: 120px; object-fit: cover;"
+                         alt="Team Member">
+                    <h5 class="fw-bold mb-1">Arjun Singh</h5>
+                    <p class="text-muted small">Operations Manager</p>
+                    <div class="social-links d-flex justify-content-center gap-2 mt-2">
+                        <a href="#" class="btn btn-sm btn-outline-primary rounded-circle"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-primary rounded-circle"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== CTA SECTION ====== -->
+<section class="py-5">
+    <div class="container">
+        <div class="bg-gradient-about p-5 rounded-4 text-center">
+            <h3 class="text-white fw-bold mb-3">Ready to Experience Premium Fashion?</h3>
+            <p class="text-white-50 mb-4">Explore our curated collections and find your perfect style today.</p>
+            <a href="/" class="btn btn-light btn-lg px-5 py-3 rounded-pill fw-semibold">
+                <i class="bi bi-bag me-2"></i>Start Shopping
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ====== EXTRA STYLES ====== -->
+<style>
+    .bg-gradient-about {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 70%, #533483 100%);
+    }
+    
+    .stat-card {
+        transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px -10px rgba(79, 70, 229, 0.15) !important;
+    }
+    
+    .value-icon {
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(124, 58, 237, 0.08));
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+    
+    .card:hover .value-icon {
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(124, 58, 237, 0.15));
+        transform: scale(1.05);
+    }
+    
+    .transition-hover {
+        transition: all 0.3s ease;
+    }
+    
+    .transition-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1) !important;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #4338ca, #6d28d9);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+    }
+    
+    .btn-light {
+        background: white;
+        color: #1a1a2e;
+        transition: all 0.3s ease;
+        border: none;
+    }
+    
+    .btn-light:hover {
+        background: #f8fafc;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    }
+    
+    .opacity-10 {
+        opacity: 0.08;
+    }
+    
+    .start-10 {
+        left: 10%;
+    }
+    
+    .end-10 {
+        right: 10%;
+    }
+    
+    .social-links .btn {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        transition: all 0.3s ease;
+    }
+    
+    .social-links .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+    }
+    
+    @media (max-width: 768px) {
+        .bg-gradient-about {
+            padding: 3rem 0 !important;
+        }
+        .display-4 {
+            font-size: 2rem;
+        }
+        .display-5 {
+            font-size: 1.8rem;
+        }
+        .display-6 {
+            font-size: 1.5rem;
+        }
+        .btn-lg {
+            font-size: 1rem;
+            padding: 0.6rem 1.5rem !important;
+        }
+        .stat-card {
+            padding: 1.5rem !important;
+        }
+        .stat-card .display-5 {
+            font-size: 2rem !important;
+        }
+    }
+</style>
 {% endblock body %}

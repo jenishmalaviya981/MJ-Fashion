@@ -1,121 +1,459 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %} Shopping Cart {% endblock title %}
 
 {% block body %}
+<!-- ====== CART HERO ====== -->
+<div class="bg-gradient-cart py-4 mb-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-5 fw-bold text-white mb-2">
+                    <i class="bi bi-bag-fill me-2"></i>Shopping Cart
+                </h1>
+                <p class="text-white-50 mb-0">Review your items and proceed to checkout</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div class="container py-5">
+<div class="container pb-5">
 
-    <h1 class="mb-4 text-center">🛒 Shopping Cart</h1>
-
-    <!-- Empty Cart Message -->
+    <!-- ====== EMPTY CART ====== -->
     <div id="empty-cart" class="text-center py-5" style="display:none;">
-
-        <h2 class="fw-bold">Hey, it feels so light!</h2>
-
-        <p class="text-muted fs-5">
+        <div class="empty-cart-icon mb-4">
+            <i class="bi bi-cart-x fs-1 text-muted"></i>
+        </div>
+        <h2 class="fw-bold mb-3" style="color: #0f172a;">Hey, it feels so light!</h2>
+        <p class="text-muted fs-5 mb-4">
             There is nothing in your bag. Let's add some items.
         </p>
-
-        <a href="/" class="btn btn-primary btn-lg mt-3">
-            Continue Shopping
+        <a href="/" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-semibold">
+            <i class="bi bi-arrow-left me-2"></i>Continue Shopping
         </a>
-
     </div>
 
-    <!-- Cart Content -->
-    <div id="cart-content">
-
-        <table class="table table-bordered table-hover">
-
-            <thead class="table-dark">
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th width="150">Action</th>
-                </tr>
-            </thead>
-
-            <tbody id="cart-body">
-            </tbody>
-
-        </table>
-
-        <div class="d-flex justify-content-between align-items-center">
-
-            <h3>
-                Total: ₹<span id="total">0</span>
-            </h3>
-
-            <a href="/checkout/" class="btn btn-success btn-lg">
-                Proceed to Checkout
-            </a>
-
+    <!-- ====== CART CONTENT ====== -->
+    <div id="cart-content" style="display:none;">
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="card-header bg-white border-0 py-3 px-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold mb-0">
+                        <i class="bi bi-bag-check text-primary me-2"></i>Your Items
+                        <span id="item-count" class="badge bg-primary rounded-pill ms-2">0</span>
+                    </h5>
+                    <button class="btn btn-outline-danger btn-sm rounded-pill" onclick="clearCart()">
+                        <i class="bi bi-trash me-1"></i>Clear All
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="border-0 ps-4 py-3">Product</th>
+                                <th class="border-0 py-3">Price</th>
+                                <th class="border-0 py-3">Quantity</th>
+                                <th class="border-0 py-3">Total</th>
+                                <th class="border-0 pe-4 py-3 text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-body">
+                            <!-- Cart items will be rendered here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer bg-white border-0 p-4">
+                <div class="row align-items-center g-3">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <span class="text-muted me-2">Subtotal:</span>
+                            <h3 class="fw-bold mb-0 text-primary">
+                                ₹<span id="total">0</span>
+                            </h3>
+                        </div>
+                        <small class="text-muted">Taxes and shipping calculated at checkout</small>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="/checkout/" class="btn btn-success btn-lg px-5 py-3 rounded-pill fw-semibold">
+                            <i class="bi bi-credit-card me-2"></i>Proceed to Checkout
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- Continue Shopping Link -->
+        <div class="text-center mt-4">
+            <a href="/" class="text-decoration-none text-primary fw-semibold">
+                <i class="bi bi-arrow-left me-1"></i>Continue Shopping
+            </a>
+        </div>
     </div>
 
 </div>
 
+<!-- ====== CUSTOM SCRIPTS ====== -->
 <script>
+// Helper function to get cart from localStorage
+function getCart() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+}
+
+// Helper function to save cart to localStorage
+function saveCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartBadge();
+}
+
+// Update cart badge in navbar
+function updateCartBadge() {
+    let cart = getCart();
+    let count = cart.length;
+    let badges = document.querySelectorAll('#cart-count');
+    badges.forEach(badge => {
+        badge.innerText = count;
+    });
+}
 
 function loadCart() {
-
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+    let cart = getCart();
+    
     let emptyCart = document.getElementById('empty-cart');
     let cartContent = document.getElementById('cart-content');
     let cartBody = document.getElementById('cart-body');
-
-    if(cart.length === 0){
-
+    let itemCount = document.getElementById('item-count');
+    
+    // Update cart badge in navbar
+    updateCartBadge();
+    
+    if(cart.length === 0) {
         emptyCart.style.display = 'block';
         cartContent.style.display = 'none';
-
         return;
     }
-
+    
     emptyCart.style.display = 'none';
     cartContent.style.display = 'block';
-
+    
     cartBody.innerHTML = "";
-
-    let total = 0;
-
-    cart.forEach((item, index) => {
-
-        total += Number(item.price);
-
+    let grandTotal = 0;
+    
+    // Group items to show quantities
+    let itemGroups = {};
+    cart.forEach(item => {
+        let key = item.name + '|' + item.price;
+        if (itemGroups[key]) {
+            itemGroups[key].quantity++;
+        } else {
+            itemGroups[key] = {
+                name: item.name,
+                price: Number(item.price),
+                quantity: 1,
+                // Store first occurrence index for removal
+                indices: [cart.indexOf(item)]
+            };
+        }
+    });
+    
+    // Rebuild indices for grouped items
+    let groupedItems = Object.values(itemGroups);
+    groupedItems.forEach(group => {
+        group.indices = [];
+        cart.forEach((item, index) => {
+            if (item.name === group.name && Number(item.price) === group.price) {
+                group.indices.push(index);
+            }
+        });
+    });
+    
+    let index = 0;
+    groupedItems.forEach((item) => {
+        let itemTotal = item.price * item.quantity;
+        grandTotal += itemTotal;
+        
         cartBody.innerHTML += `
         <tr>
-            <td>${item.name}</td>
-            <td>₹${item.price}</td>
-            <td>
-                <button class="btn btn-danger btn-sm"
-                        onclick="removeItem(${index})">
-                    Remove
+            <td class="ps-4 py-3">
+                <div class="d-flex align-items-center">
+                    <div class="product-icon me-3">
+                        <i class="bi bi-box-seam fs-4 text-primary"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-0">${item.name}</h6>
+                    </div>
+                </div>
+            </td>
+            <td class="py-3">₹${item.price.toFixed(2)}</td>
+            <td class="py-3">
+                <div class="quantity-control d-flex align-items-center gap-2">
+                    <button class="btn btn-sm btn-outline-secondary rounded-circle" 
+                            onclick="updateQuantity('${item.name}', ${item.price}, -1)" 
+                            style="width: 32px; height: 32px; padding: 0;">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="fw-bold mx-1" style="min-width: 30px; text-align: center;">${item.quantity}</span>
+                    <button class="btn btn-sm btn-outline-secondary rounded-circle" 
+                            onclick="updateQuantity('${item.name}', ${item.price}, 1)" 
+                            style="width: 32px; height: 32px; padding: 0;">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                </div>
+            </td>
+            <td class="py-3 fw-bold">₹${itemTotal.toFixed(2)}</td>
+            <td class="pe-4 py-3 text-center">
+                <button class="btn btn-danger btn-sm rounded-circle" 
+                        onclick="removeItem('${item.name}', ${item.price})"
+                        style="width: 35px; height: 35px; padding: 0;">
+                    <i class="bi bi-trash"></i>
                 </button>
             </td>
         </tr>
         `;
+        index++;
     });
-
-    document.getElementById('total').innerText = total;
+    
+    document.getElementById('total').innerText = grandTotal.toFixed(2);
+    itemCount.innerText = cart.length;
 }
 
-function removeItem(index) {
-
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    cart.splice(index, 1);
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-
+// Update quantity for a specific item
+function updateQuantity(name, price, delta) {
+    let cart = getCart();
+    let newCart = [];
+    let found = false;
+    
+    if (delta > 0) {
+        // Add one more item
+        cart.push({
+            name: name,
+            price: price
+        });
+        saveCart(cart);
+        showToast(`${name} added to cart`, 'success');
+    } else {
+        // Remove one item
+        let removed = false;
+        for (let i = cart.length - 1; i >= 0; i--) {
+            if (cart[i].name === name && Number(cart[i].price) === price && !removed) {
+                cart.splice(i, 1);
+                removed = true;
+                break;
+            }
+        }
+        if (removed) {
+            saveCart(cart);
+            showToast(`${name} removed from cart`, 'warning');
+        }
+    }
+    
     loadCart();
 }
 
-loadCart();
+// Remove all items with a specific name and price
+function removeItem(name, price) {
+    if (!confirm(`Remove all "${name}" from cart?`)) return;
+    
+    let cart = getCart();
+    let newCart = cart.filter(item => {
+        return !(item.name === name && Number(item.price) === price);
+    });
+    
+    saveCart(newCart);
+    loadCart();
+    showToast(`All "${name}" removed from cart`, 'danger');
+}
 
+// Clear entire cart
+function clearCart() {
+    if (confirm('Are you sure you want to clear your entire cart?')) {
+        saveCart([]);
+        loadCart();
+        showToast('Cart cleared successfully', 'warning');
+    }
+}
+
+// Legacy function for compatibility with base template
+function removeItemByIndex(index) {
+    let cart = getCart();
+    cart.splice(index, 1);
+    saveCart(cart);
+    loadCart();
+}
+
+// Toast notification
+function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = 'position-fixed bottom-0 end-0 p-3';
+    toast.style.zIndex = '9999';
+    const colors = {
+        success: 'bg-success',
+        warning: 'bg-warning text-dark',
+        danger: 'bg-danger',
+        info: 'bg-info'
+    };
+    const icons = {
+        success: 'bi-check-circle-fill',
+        warning: 'bi-exclamation-triangle-fill',
+        danger: 'bi-x-circle-fill',
+        info: 'bi-info-circle-fill'
+    };
+    toast.innerHTML = `
+        <div class="toast show align-items-center text-white border-0 rounded-4 shadow-lg ${colors[type] || 'bg-dark'}" 
+             role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body d-flex align-items-center gap-3">
+                    <span class="badge bg-white bg-opacity-25 rounded-circle p-2">
+                        <i class="bi ${icons[type] || 'bi-info-lg'}"></i>
+                    </span>
+                    <div>
+                        <strong>${message}</strong>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.remove();
+    }, 2800);
+}
+
+// Load cart on page load
+loadCart();
 </script>
 
+<!-- ====== EXTRA STYLES ====== -->
+<style>
+    .bg-gradient-cart {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 70%, #533483 100%);
+    }
+    
+    .empty-cart-icon {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(124, 58, 237, 0.05));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .empty-cart-icon i {
+        font-size: 4rem;
+        color: #c4b5fd;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #4338ca, #6d28d9);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+    }
+    
+    .btn-success {
+        background: linear-gradient(135deg, #059669, #10b981);
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-success:hover {
+        background: linear-gradient(135deg, #047857, #059669);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
+    }
+    
+    .btn-outline-danger {
+        transition: all 0.3s ease;
+    }
+    
+    .btn-outline-danger:hover {
+        transform: scale(1.05);
+    }
+    
+    .product-icon {
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(124, 58, 237, 0.08));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .quantity-control .btn {
+        transition: all 0.2s ease;
+        border-width: 2px;
+    }
+    
+    .quantity-control .btn:hover {
+        background: #4f46e5;
+        color: white;
+        border-color: #4f46e5;
+        transform: scale(1.1);
+    }
+    
+    .quantity-control .btn:active {
+        transform: scale(0.95);
+    }
+    
+    .table td {
+        vertical-align: middle;
+    }
+    
+    .table-hover tbody tr {
+        transition: background-color 0.2s ease;
+    }
+    
+    .table-hover tbody tr:hover {
+        background-color: #f8fafc;
+    }
+    
+    .btn-danger {
+        transition: all 0.3s ease;
+    }
+    
+    .btn-danger:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+        .bg-gradient-cart {
+            padding: 2rem 0 !important;
+        }
+        .display-5 {
+            font-size: 1.8rem;
+        }
+        .btn-lg {
+            font-size: 0.95rem;
+            padding: 0.6rem 1.2rem !important;
+        }
+        .table-responsive {
+            font-size: 0.9rem;
+        }
+        .product-icon {
+            width: 32px;
+            height: 32px;
+        }
+        .product-icon i {
+            font-size: 1rem;
+        }
+        .quantity-control .btn {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 0.8rem;
+        }
+    }
+</style>
 {% endblock body %}

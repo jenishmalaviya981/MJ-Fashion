@@ -1,239 +1,289 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %} Home {% endblock title %}
 
-{% block body %} 
-<div class="container my-1">
-    <div id="carouselExampleCaptions" class="carousel slide"
-      class="carousel slide" data-bs-ride="carousel" data-bs-interval="1500">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/static/bg_1.jpg.jpeg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h4>Welcome to MJ Fashion</h4>
-        <p>Discover the latest trends in fashion and style. Shop premium collections at affordable prices.</p>
-        <p>Enjoy quality products, secure checkout, and fast delivery only at MJ Fashion.</p>
-      </div>
+{% block body %}
+<!-- ====== HERO CAROUSEL (premium) ====== -->
+<div class="container my-4">
+  <div id="premiumCarousel" class="carousel slide carousel-fade shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel" data-bs-interval="1800">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#premiumCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#premiumCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#premiumCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <div class="carousel-item">
-      <img src="/static/bg_2.jpg.jpeg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="/static/bg_3.jpg.jpeg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-</div>
-
-    <div class="container my-4">
-       <h1 class="counter my-4 text-center"> Select Our Shopping Items</h1>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-
-            <!-- Product 1 -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/static/headphone.webp" class="card-img-top" alt="Product">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Wireless Headphones</h5>
-                        <p class="card-text">
-                            Premium sound quality with noise cancellation.
-                        </p>
-                        <h4 class="text-success">₹2,999</h4>
-                    </div>
-
-                    <button class="btn btn-primary w-100 add-cart"
-                          data-name="Wireless Headphones"
-                          data-price="2999">
-                          Add to Cart
-                    </button>
-
-                </div>
-            </div>
-
-            <!-- Product 2 -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/static/smartwatch.webp" class="card-img-top" alt="Product">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Smart Watch</h5>
-                        <p class="card-text">
-                            Track fitness, heart rate, and notifications.
-                        </p>
-                        <h4 class="text-success">₹4,499</h4>
-                    </div>
-
-                   <button class="btn btn-primary w-100 add-cart"
-                         data-name="Smart Watch"
-                         data-price="4499">
-                         Add to Cart
-                   </button>
-                </div>
-            </div>
-
-            <!-- Product 3 -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/static/gamingmoues.jpg" class="card-img-top" alt="Product">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Gaming Mouse</h5>
-                        <p class="card-text">
-                            RGB lighting with high-precision sensor.
-                        </p>
-                        <h4 class="text-success">₹1,299</h4>
-                    </div>
-
-                    <button class="btn btn-primary w-100 add-cart"
-                         data-name="Gaming Mouse"
-                         data-price="1299">
-                         Add to Cart
-                    </button>
-                </div>
-            </div>
-
-            <!-- Product 4 -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/static/bluetoothspekar.webp" class="card-img-top" alt="Product">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Bluetooth Speaker</h5>
-                        <p class="card-text">
-                            Portable speaker with deep bass sound.
-                        </p>
-                        <h4 class="text-success">₹1,999</h4>
-                    </div>
-
-                    <button class="btn btn-primary w-100 add-cart"
-                        data-name="Bluetooth Speaker"
-                        data-price="1999">
-                        Add to Cart
-                    </button>
-                </div>
-            </div>
-
-            <!-- Product 5 -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/static/laptopbackpack.avif" class="card-img-top" alt="Product">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Laptop Backpack</h5>
-                        <p class="card-text">
-                            Water-resistant backpack with USB charging port.
-                        </p>
-                        <h4 class="text-success">₹899</h4>
-                    </div>
-
-                    <button class="btn btn-primary w-100 add-cart"
-                         data-name="Laptop Backpack"
-                         data-price="899">
-                         Add to Cart
-                    </button>                 
-                </div>
-            </div>
-
-            <!-- Product 6 -->
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="/static/keyboard.webp" class="card-img-top" alt="Product">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Wireless Keyboard</h5>
-                        <p class="card-text">
-                            Slim design with long battery life.
-                        </p>
-                        <h4 class="text-success">₹1,499</h4>
-                    </div>
-                      <button class="btn btn-primary w-100 add-cart"
-                          data-name="Wireless Keyboard"
-                          data-price="1499">
-                          Add to Cart
-                      </button>
-            </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'bg_1.jpg.jpeg' %}" class="d-block w-100" alt="Fashion slide 1" style="height: 460px; object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 p-4 rounded-4" style="backdrop-filter: blur(4px); bottom: 30px;">
+          <h2 class="fw-bold display-5">Welcome to MJ Fashion</h2>
+          <p class="lead fs-5">Discover the latest trends in fashion and style. Shop premium collections at affordable prices.</p>
+          <p class="fs-6">Enjoy quality products, secure checkout, and fast delivery only at MJ Fashion.</p>
         </div>
-
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'bg_2.jpg.jpeg' %}" class="d-block w-100" alt="Fashion slide 2" style="height: 460px; object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 p-4 rounded-4" style="backdrop-filter: blur(4px); bottom: 30px;">
+          <h3 class="fw-bold">New Arrivals</h3>
+          <p class="fs-5">Elevate your wardrobe with our exclusive collection.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'bg_3.jpg.jpeg' %}" class="d-block w-100" alt="Fashion slide 3" style="height: 460px; object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 p-4 rounded-4" style="backdrop-filter: blur(4px); bottom: 30px;">
+          <h3 class="fw-bold">Limited Edition</h3>
+          <p class="fs-5">Timeless elegance, crafted for you.</p>
+        </div>
+      </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#premiumCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#premiumCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </div>
 
-<footer class="bg-dark text-light py-5">
-    <style>
-         footer .row{
-    justify-content: center;
-    gap: 20px;
-}
+<!-- ====== PRODUCT SECTION ====== -->
+<div class="container my-5">
+  <div class="text-center mb-5">
+    <span class="badge bg-primary bg-gradient px-4 py-2 rounded-pill text-uppercase fs-6 fw-light">Collection</span>
+    <h2 class="display-6 fw-bold mt-3" style="color: #0f172a;">Select Our Shopping Items</h2>
+    <div class="mx-auto" style="width: 60px; height: 3px; background: linear-gradient(90deg, #818cf8, #a78bfa); border-radius: 4px;"></div>
+  </div>
 
-footer h5{
-    margin-bottom: 10px;
-}
-</style>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    <!-- Product 1 -->
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden transition-hover">
+        <div class="position-relative">
+          <img src="{% static 'headphone.webp' %}" class="card-img-top" alt="Wireless Headphones" style="height: 220px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x220/4f46e5/ffffff?text=Headphones'">
+          <span class="position-absolute top-0 end-0 bg-dark text-white px-3 py-1 m-2 rounded-pill small">New</span>
+        </div>
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-semibold">Wireless Headphones</h5>
+          <p class="card-text text-secondary small">Premium sound quality with noise cancellation.</p>
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <h4 class="text-success fw-bold mb-0">₹2,999</h4>
+            <span class="badge bg-light text-dark rounded-pill">⭐ 4.8</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg rounded-0 add-cart py-3 fw-semibold" data-name="Wireless Headphones" data-price="2999">
+          <i class="bi bi-cart-plus me-2"></i>Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden transition-hover">
+        <img src="{% static 'smartwatch.webp' %}" class="card-img-top" alt="Smart Watch" style="height: 220px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x220/7c3aed/ffffff?text=Smart+Watch'">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-semibold">Smart Watch</h5>
+          <p class="card-text text-secondary small">Track fitness, heart rate, and notifications.</p>
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <h4 class="text-success fw-bold mb-0">₹4,499</h4>
+            <span class="badge bg-light text-dark rounded-pill">⭐ 4.9</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg rounded-0 add-cart py-3 fw-semibold" data-name="Smart Watch" data-price="4499">
+          <i class="bi bi-cart-plus me-2"></i>Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden transition-hover">
+        <img src="{% static 'gamingmoues.jpg' %}" class="card-img-top" alt="Gaming Mouse" style="height: 220px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x220/ec4899/ffffff?text=Gaming+Mouse'">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-semibold">Gaming Mouse</h5>
+          <p class="card-text text-secondary small">RGB lighting with high-precision sensor.</p>
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <h4 class="text-success fw-bold mb-0">₹1,299</h4>
+            <span class="badge bg-light text-dark rounded-pill">⭐ 4.6</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg rounded-0 add-cart py-3 fw-semibold" data-name="Gaming Mouse" data-price="1299">
+          <i class="bi bi-cart-plus me-2"></i>Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden transition-hover">
+        <img src="{% static 'bluetoothspekar.webp' %}" class="card-img-top" alt="Bluetooth Speaker" style="height: 220px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x220/06b6d4/ffffff?text=Speaker'">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-semibold">Bluetooth Speaker</h5>
+          <p class="card-text text-secondary small">Portable speaker with deep bass sound.</p>
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <h4 class="text-success fw-bold mb-0">₹1,999</h4>
+            <span class="badge bg-light text-dark rounded-pill">⭐ 4.7</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg rounded-0 add-cart py-3 fw-semibold" data-name="Bluetooth Speaker" data-price="1999">
+          <i class="bi bi-cart-plus me-2"></i>Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden transition-hover">
+        <img src="{% static 'laptopbackpack.avif' %}" class="card-img-top" alt="Laptop Backpack" style="height: 220px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x220/f59e0b/ffffff?text=Backpack'">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-semibold">Laptop Backpack</h5>
+          <p class="card-text text-secondary small">Water-resistant backpack with USB charging port.</p>
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <h4 class="text-success fw-bold mb-0">₹899</h4>
+            <span class="badge bg-light text-dark rounded-pill">⭐ 4.5</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg rounded-0 add-cart py-3 fw-semibold" data-name="Laptop Backpack" data-price="899">
+          <i class="bi bi-cart-plus me-2"></i>Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="col">
+      <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden transition-hover">
+        <img src="{% static 'keyboard.webp' %}" class="card-img-top" alt="Wireless Keyboard" style="height: 220px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x220/8b5cf6/ffffff?text=Keyboard'">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-semibold">Wireless Keyboard</h5>
+          <p class="card-text text-secondary small">Slim design with long battery life.</p>
+          <div class="mt-auto d-flex justify-content-between align-items-center">
+            <h4 class="text-success fw-bold mb-0">₹1,499</h4>
+            <span class="badge bg-light text-dark rounded-pill">⭐ 4.4</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg rounded-0 add-cart py-3 fw-semibold" data-name="Wireless Keyboard" data-price="1499">
+          <i class="bi bi-cart-plus me-2"></i>Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== PREMIUM FOOTER ====== -->
+<footer class="bg-dark text-light pt-5 pb-4 mt-5">
   <div class="container">
-    <div class="row gx-2">
-
-      <div class="col-md-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-          fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24">
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-2 text-center text-md-start">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10"></circle>
         </svg>
-        <small class="text-secondary d-block mt-2">
-          © 2017–2025
-        </small>
+        <small class="text-secondary d-block mt-2">&copy; 2017–2025 MJ Fashion</small>
       </div>
 
-      <div class="col-md-2">
-        <h5><a href="/services">Features </a></h5>
-        <ul class="list-unstyled">
-          <li><a href="#" class="text-secondary text-decoration-none">Cool stuff</a></li>
-          <li><a href="#" class="text-secondary text-decoration-none">Random feature</a></li>
-          <li><a href="#" class="text-secondary text-decoration-none">Team feature</a></li>
+      <div class="col-md-2 text-center text-md-start">
+        <h5 class="fw-semibold"><a href="/services" class="text-decoration-none text-light">Features</a></h5>
+        <ul class="list-unstyled small">
+          <li><a href="#" class="text-secondary text-decoration-none hover-link">Cool stuff</a></li>
+          <li><a href="#" class="text-secondary text-decoration-none hover-link">Random feature</a></li>
+          <li><a href="#" class="text-secondary text-decoration-none hover-link">Team feature</a></li>
         </ul>
       </div>
 
-      <div class="col-md-2">
-        <h5>Resources</h5>
-        <ul class="list-unstyled">
-          <li><a href="#" class="text-secondary text-decoration-none">Resource name</a></li>
-          <li><a href="#" class="text-secondary text-decoration-none">Resource</a></li>
+      <div class="col-md-2 text-center text-md-start">
+        <h5 class="fw-semibold">Resources</h5>
+        <ul class="list-unstyled small">
+          <li><a href="#" class="text-secondary text-decoration-none hover-link">Resource name</a></li>
+          <li><a href="#" class="text-secondary text-decoration-none hover-link">Resource</a></li>
         </ul>
       </div>
 
-      <div class="col-md-2">
-        <h5>Resources</h5>
-        <ul class="list-unstyled">
-          <li><a href="#" class="text-secondary text-decoration-none">Business</a></li>
-          <li><a href="#" class="text-secondary text-decoration-none">Education</a></li>
+      <div class="col-md-2 text-center text-md-start">
+        <h5 class="fw-semibold">Community</h5>
+        <ul class="list-unstyled small">
+          <li><a href="#" class="text-secondary text-decoration-none hover-link">Business</a></li>
+          <li><a href="#" class="text-secondary text-decoration-none hover-link">Education</a></li>
         </ul>
       </div>
 
-      <div class="col-md-2">
-        <h5><a href="/about">About </a></h5>
-        <ul class="list-unstyled">
-          <li><a class="text-secondary text-decoration-none">Team</a></li>
-          <li><a class="text-secondary text-decoration-none">Locations</a></li>
+      <div class="col-md-2 text-center text-md-start">
+        <h5 class="fw-semibold"><a href="/about" class="text-decoration-none text-light">About</a></h5>
+        <ul class="list-unstyled small">
+          <li><span class="text-secondary">Team</span></li>
+          <li><span class="text-secondary">Locations</span></li>
         </ul>
       </div>
-
+    </div>
+    <hr class="border-secondary opacity-25">
+    <div class="text-center text-secondary small">
+      <span>Made with <i class="bi bi-heart-fill text-danger"></i> by MJ Fashion</span>
     </div>
   </div>
 </footer>
+
+<!-- ====== EXTRA STYLES ====== -->
+<style>
+  .transition-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .transition-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15) !important;
+  }
+  .carousel-caption {
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(6px);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+  }
+  .carousel-item img {
+    filter: brightness(0.75);
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    border: none;
+    transition: all 0.25s ease;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #4338ca, #6d28d9);
+    transform: scale(1.01);
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+  }
+  .hover-link {
+    transition: color 0.2s;
+  }
+  .hover-link:hover {
+    color: #c4b5fd !important;
+  }
+  .badge.bg-primary {
+    background: linear-gradient(135deg, #818cf8, #a78bfa) !important;
+  }
+  .card .btn {
+    border-radius: 0 0 16px 16px;
+  }
+  .card {
+    border-radius: 16px !important;
+  }
+  .card-img-top {
+    border-radius: 16px 16px 0 0;
+  }
+  footer a {
+    transition: color 0.2s;
+  }
+  footer a:hover {
+    color: #c4b5fd !important;
+  }
+  
+  /* Fallback image styling */
+  img[onerror] {
+    object-fit: contain !important;
+    background: #f3f4f6;
+    padding: 20px;
+  }
+</style>
+
+<!-- ====== DJANGO STATIC FILES CONFIGURATION ====== -->
+<!-- Make sure you have these settings in your settings.py:
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+-->
 {% endblock body %}

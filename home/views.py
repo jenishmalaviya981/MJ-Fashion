@@ -107,10 +107,10 @@ def services(request):
 
 def contact(request):
     if request.method == "POST":
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        desc = request.POST.get('desc')
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        subject = request.POST.get("subject")
+        desc = request.POST.get("desc")
         contact = Contact(name=name,email=email,subject=subject,desc=desc , date = datetime.today())
         contact.save()
         messages.success(request, "Your message has been sent.")
